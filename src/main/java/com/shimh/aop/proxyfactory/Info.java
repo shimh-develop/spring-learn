@@ -25,7 +25,7 @@ public class Info {
 		User u = new User();
 		
 		ProxyFactory pf = new ProxyFactory(u);
-		pf.setOptimize(true); //true 子类代理   false 接口代理
+		pf.setOptimize(true); //true 强制使用子类代理   
 		pf.setProxyTargetClass(true); //true 子类代理   false 接口代理
 		
 		NameMatchMethodPointcutAdvisor advisor = new NameMatchMethodPointcutAdvisor();

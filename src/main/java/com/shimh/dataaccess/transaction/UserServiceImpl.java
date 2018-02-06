@@ -35,7 +35,6 @@ public class UserServiceImpl {
 		
 		template.execute(new TransactionCallback<String>() {
 
-			@Override
 			public String doInTransaction(TransactionStatus status) {
 
 				try{
@@ -46,6 +45,8 @@ public class UserServiceImpl {
 				
 				return null;
 			}
+
+			
 		});
 		
 		template.execute(new TransactionCallbackWithoutResult() {

@@ -1,9 +1,16 @@
 package com.shimh.mvc;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
+import org.springframework.validation.Validator;
+import org.springframework.web.client.AsyncRestTemplate;
 import org.springframework.web.servlet.HandlerAdapter;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
+import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver;
 import org.springframework.web.servlet.view.AbstractCachingViewResolver;
 import org.springframework.web.servlet.view.AbstractView;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
@@ -14,11 +21,13 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsViewResolver;
 import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
-/*
+import com.shimh.common.User;
+
+/*	默认组件配置：/org/springframework/web/servlet/DispatcherServlet.properties
  * 		
  *  1 DispatcherServlet
  * 
- *  2 HandlerMapping  web请求和具体的处理类的映射关系匹配，多个时，按Ordered接口，值越小，优先级越高。
+ *  2 HandlerMapping 路由控制器  web请求和具体的处理类的映射关系匹配，多个时，按Ordered接口，值越小，优先级越高。
  *  	BeanNameUrlHandlerMapping url与bean的name匹配
  *  	SimpleUrlHandlerMapping 可以配置映射 mappings属性
  *  	DefaultAnnotationHandlerMapping 基于注解的配置
@@ -48,9 +57,20 @@ import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
  * 	HandlerInterceptor 可以在handlerMapping中配置
  * 
  * 	HandlerExceptionResolver
+ * 		AnnotationMethodHandlerExceptionResolver 允许使用@ExceptionHandler
  * 
  * 
- * 
+ *------------
+ *	HttpMessageCovert
+ *-------
+ *	ConversionService 数据转换
+ *	Formatter 数据格式化    @DateTimeFormat
+ *	Validator 数据校验
+ *-----------
+ *	RestTemplate 客户端同步
+ *	AsyncRestTemplate 客户端异步调用
+ *------------
+ *	RequestContextHolder  需配置 RequestContextListener
  *
  */
 public class Info {
@@ -83,6 +103,45 @@ public class Info {
 		//HandlerInterceptor
 		//HandlerExceptionResolver
 			//SimpleMappingExceptionResolver
+			//AnnotationMethodHandlerExceptionResolver
+		
+		
+		//-------
+		//HttpMessageConverter<T>
+		
+		//RestTemplate
+		//AsyncRestTemplate
+		
+		//ConversionService
+		//Formatter
+		//Validator
+		
+		test1();
+	}
+	
+	//AsyncRestTemplate 非阻塞
+	private static void test1() {
+		AsyncRestTemplate art = new AsyncRestTemplate();
+
+		ListenableFuture<ResponseEntity<User>> f = art.getForEntity("http:localhost:8080/users/", User.class);
+		
+		f.addCallback(new ListenableFutureCallback<ResponseEntity<User>>() {
+
+			@Override
+			public void onSuccess(ResponseEntity<User> result) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onFailure(Throwable ex) {
+				// TODO Auto-generated method stub
+				
+			}
+
+		});
+		
+		
 	}
 	
 	
