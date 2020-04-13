@@ -10,7 +10,7 @@ import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
-import com.shimh.common.User;
+import com.shimh.ioc.common.User;
 
 public class Info {
 	
@@ -58,7 +58,7 @@ public class Info {
 		//T
 		
 		//构造对象
-		User u2 = sp.parseExpression("new com.shimh.common.User()").getValue(User.class);
+		User u2 = sp.parseExpression("new com.shimh.ioc.common.User()").getValue(User.class);
 		System.out.println(u2);
 		
 		//变量  #变量名

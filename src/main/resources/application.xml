@@ -2,15 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
     
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	
 	<context:property-placeholder />
-	
+
+
 	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
 		<property name="customEditors">
 			<map>
@@ -24,6 +28,69 @@
 	<bean id="driver" class="com.shimh.ioc.propertyeditor.Driver">
 		<property name="car" value="mini,10000"></property>
 	</bean>
-	
-	
+
+	<!-- id name alias 指定标识-->
+	<bean id="user" name="user2" class="com.shimh.ioc.common.User">
+		<property name="name" value="shimh"></property>
+		<property name="sex" value="男"></property>
+	</bean>
+	<alias name="user" alias="user3"/>
+	<!-- id name alias 指定标识-->
+
+	<!-- 构造函数注入 -->
+	<bean id="user4" class="com.shimh.ioc.common.User">
+		<constructor-arg type="java.lang.String" value="shimh"></constructor-arg>
+		<constructor-arg type="java.lang.Integer" value="2"></constructor-arg>
+	</bean>
+
+	<bean id="user5" class="com.shimh.ioc.common.User">
+		<constructor-arg index="0" value="2"/>
+		<constructor-arg index="1" value="shimh"/>
+	</bean>
+
+	<bean id="user6" class="com.shimh.ioc.common.User"> <!-- 不行时，试试在构造方法上加 @ConstructorProperties({"id", "name"})-->
+		<constructor-arg name="id" value="2"/>
+		<constructor-arg name="name" value="shimh"/>
+	</bean>
+	<!-- 构造函数注入 -->
+
+	<!-- lookup 方法注入 -->
+	<bean id="abstractUser" class="com.shimh.ioc.common.AbstractUser">
+		<lookup-method name="user" bean="user"></lookup-method>
+	</bean>
+	<!-- lookup 方法注入 -->
+
+	<!-- <aop:scoped-proxy/>  作用域Bean依赖 长生命周期依赖短生命周期的Bean时，创建代理对象 -->
+	<bean id="company" class="com.shimh.ioc.common.Company">
+		<property name="user" ref="user7"></property>
+	</bean>
+	<bean id="user7" class="com.shimh.ioc.common.User" scope="prototype">
+		<constructor-arg index="0" value="2"/>
+		<constructor-arg index="1" value="shimh"/>
+		<aop:scoped-proxy/>
+	</bean>
+
+	<!-- Bean生命周期 -->
+	<bean class="com.shimh.ioc.common.BeanLifecycleTest" init-method="test2" destroy-method="test4"></bean>
+	<context:annotation-config></context:annotation-config>
+	<!-- Bean生命周期 -->
+
+	<!-- 容器生命周期 -->
+	<bean class="com.shimh.ioc.common.LifecycleTest"></bean>
+	<!--<bean id="lifecycleProcessor" class="org.springframework.context.support.DefaultLifecycleProcessor">-->
+		<!--<property name="timeoutPerShutdownPhase" value="10000"/>-->
+	<!--</bean>-->
+	<!-- 容器生命周期 -->
+	<!-- Bean 定义继承 -->
+	<bean id="inheritedTestBeanWithoutClass" abstract="true">
+		<property name="name" value="parent-shimh"/>
+		<property name="sex" value="1"/>
+	</bean>
+	<bean id="user8" class="com.shimh.ioc.common.User" parent="inheritedTestBeanWithoutClass">
+		<property name="sex" value="2"></property>
+	</bean>
+	<!-- Bean 定义继承 -->
+	<!-- BeanPostProcessor -->
+	<bean class="com.shimh.ioc.common.BeanPostProcessorTest"></bean>
+	<!-- BeanPostProcessor -->
 </beans>

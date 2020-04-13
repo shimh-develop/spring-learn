@@ -1,11 +1,5 @@
 package com.shimh.ioc.annotation;
 
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeanWrapperImpl;
-import org.springframework.beans.PropertyValue;
-
-import com.shimh.common.User;
-
 
 /*
  * 	注解的自动装配

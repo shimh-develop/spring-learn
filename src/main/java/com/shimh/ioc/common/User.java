@@ -1,6 +1,5 @@
-package com.shimh.common;
+package com.shimh.ioc.common;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,12 +8,22 @@ public class User {
 	private Integer id;
 	
 	private String name;
+
+	private String sex;
 	
 	private String[] hobbies;
 	
 	private Date createTime;
 	
 	private Map<String,String> maps = new HashMap<String, String>();
+
+	public User() {
+	}
+
+	public User(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
 	public Integer getId() {
 		return id;
@@ -30,6 +39,14 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 	public String[] getHobbies() {
@@ -56,11 +73,11 @@ public class User {
 		this.maps = maps;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", hobbies=" + Arrays.toString(hobbies) + ", createTime="
-				+ createTime + ", maps=" + maps + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "User [id=" + id + ", name=" + name + ", hobbies=" + Arrays.toString(hobbies) + ", createTime="
+//				+ createTime + ", maps=" + maps + "]";
+//	}
 
 	
 	

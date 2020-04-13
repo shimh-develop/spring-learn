@@ -1,11 +1,5 @@
 package com.shimh.ioc.initializingbean;
 
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeanWrapperImpl;
-import org.springframework.beans.PropertyValue;
-
-import com.shimh.common.User;
-
 
 /*
  * 	在对象实例化过程调用过“ BeanPostProcessor 的前置处理”之后，会接着检测当前对象是否实现了 InitializingBean 接口，

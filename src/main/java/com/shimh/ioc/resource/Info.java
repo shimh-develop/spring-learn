@@ -29,7 +29,7 @@ public class Info {
 		//ResourceLoader
 			//ResourcePatternResolver
 				//PathMatchingResourcePatternResolver
-		load();
+		// load();
 	}
 		
 	public static void resource() throws Exception{
@@ -39,7 +39,7 @@ public class Info {
 	}
 	
 	public static void load() throws Exception{
-		//支持 ? * ** Ant格式
+		//支持 ? * ** Ant格式 不同的前缀 classpath：file：ftp:
 		String path = "classpath*:*.properties";
 		ResourcePatternResolver rl = new PathMatchingResourcePatternResolver();
 		

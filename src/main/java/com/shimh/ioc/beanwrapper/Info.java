@@ -4,7 +4,7 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.PropertyValue;
 
-import com.shimh.common.User;
+import com.shimh.ioc.common.User;
 
 
 /*

@@ -1,27 +1,11 @@
 package com.shimh.mvc;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
-import org.springframework.validation.Validator;
 import org.springframework.web.client.AsyncRestTemplate;
-import org.springframework.web.servlet.HandlerAdapter;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
-import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter;
-import org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver;
-import org.springframework.web.servlet.view.AbstractCachingViewResolver;
-import org.springframework.web.servlet.view.AbstractView;
-import org.springframework.web.servlet.view.BeanNameViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.ResourceBundleViewResolver;
-import org.springframework.web.servlet.view.XmlViewResolver;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
-import org.springframework.web.servlet.view.jasperreports.JasperReportsViewResolver;
-import org.springframework.web.servlet.view.velocity.VelocityViewResolver;
 
-import com.shimh.common.User;
+import com.shimh.ioc.common.User;
 
 /*	默认组件配置：/org/springframework/web/servlet/DispatcherServlet.properties
  * 		

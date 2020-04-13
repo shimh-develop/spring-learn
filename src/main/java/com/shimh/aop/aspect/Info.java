@@ -1,8 +1,8 @@
-package com.shimh.aop.annotation;
+package com.shimh.aop.aspect;
 
 import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 
-import com.shimh.common.User;
+import com.shimh.ioc.common.User;
 
 /*
  * 	基于注解的切面
@@ -16,14 +16,14 @@ public class Info {
 	public static void main(String[] args) {
 		
 		//方式-  编程的方式织入
-		User u = new User();
-		AspectJProxyFactory factory = new AspectJProxyFactory();
-		factory.setTarget(u);
-		factory.addAspect(UserAspect.class);
-
-		User uProxy = factory.getProxy();
-		
-		System.out.println(uProxy.getName());
+//		User u = new User();
+//		AspectJProxyFactory factory = new AspectJProxyFactory();
+//		factory.setTarget(u);
+//		factory.addAspect(UserAspect.class);
+//
+//		User uProxy = factory.getProxy();
+//
+//		System.out.println(uProxy.getName());
 		
 		
 		//方式二      自动代理织入
@@ -35,13 +35,13 @@ public class Info {
 	
 	public void pointcut(){
 		/**
-		 * execution(public * com.shimh.common.*.getName()) com.shimh.common这一层下的所有类型
-		 * execution(public * com.shimh.common..*.getName()) com.shimh.common包及子包的所有类型
+		 * execution(public * com.shimh.ioc.common.*.getName()) com.shimh.common这一层下的所有类型
+		 * execution(public * com.shimh.ioc.common..*.getName()) com.shimh.common包及子包的所有类型
 		 * 
 		 * 
 		 * within:只接受类型参数，如我们在指定某个类后，它将匹配该类下所有声明的方法
-		 * 	within(com.shimh.common.*) com.shimh.common包下所有类的所有方法
-		 * 	within(com.shimh.common.。*) com.shimh.common包下及子 包下的所有类的所有方法
+		 * 	within(com.shimh.ioc.common.*) com.shimh.common包下所有类的所有方法
+		 * 	within(com.shimh.ioc.common..*) com.shimh.common包下及子 包下的所有类的所有方法
 		 * 
 		 * this target:this指代目标对象的代理对象，target指代目标对象。
 		 * 	this(ObjectType):目标对象的代理对象为ObjectType时，将匹配ObjectType类型的所有方法

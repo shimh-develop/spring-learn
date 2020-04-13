@@ -1,6 +1,8 @@
 package com.shimh.ioc.beanfactorypostprocessor;
 
 
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+
 /*
  * 	Spring提供了一种叫做 BeanFactoryPostProcessor 的容器扩展机制。该机制允许我们在容器实
  *	例化相应对象之前，对注册到容器的 BeanDefinition 所保存的信息做相应的修改
@@ -17,7 +19,7 @@ public class Info {
 
 
 	public static void main(String[] args) {
-		//
+		BeanFactoryPostProcessor beanFactoryPostProcessor = null;
 		
 		
 		

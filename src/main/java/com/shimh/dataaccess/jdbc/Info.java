@@ -1,5 +1,7 @@
 package com.shimh.dataaccess.jdbc;
 
+import org.springframework.dao.support.DaoSupport;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.lob.DefaultLobHandler;
 import org.springframework.jdbc.support.lob.LobHandler;
 
@@ -22,6 +24,7 @@ public class Info {
 		
 		LobHandler handler = new DefaultLobHandler();
 		//DataSourceUtils.getConnection(dataSource);
+		//JdbcDaoSupport
 	}
 	
 	
